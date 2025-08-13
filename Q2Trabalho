@@ -1,0 +1,74 @@
+# Desenvolver a interface do cliente para retirada do produto
+# Exigência 1/8
+
+print ('-'* 8 + 'Bem-vindo a Loja de Marmitas da Raquel Valentim' + '-' * 9)
+print ('-' * 28 + 'Cardápio' + '-' * 28)
+print ('-' * 64)
+print ('-' * 3 + '|  Tamanho  | Bife Acebolado (BA) | Filé de Frango (FF)  |' + '-' * 3)
+print ('-' * 3 + '|-----------|---------------------|----------------------|' + '-' * 3)
+print ('-' * 3 + '|     P     |       R$ 16.00      |       R$ 15.00       |' + '-' * 3)
+print ('-' * 3 + '|     M     |       R$ 18.00      |       R$ 17.00       |' + '-' * 3)
+print ('-' * 3 + '|     G     |       R$ 22.00      |       R$ 21.00       |' + '-' * 3)
+print ('-' * 64)
+
+# Exigência 4/8
+total = 0  # Acumulador
+
+# Exigência 7/8
+while True:  # Repeitr os pedidos caso o cliente queira
+
+    # Verificar se o sabor é válido
+    # Exigência 2/8
+    while True:
+        sabor = input('Digite o sabor desejado (BA/FF): ').upper()
+        if sabor == 'BA' or sabor == 'FF':
+            break # Se for válido, sai do loop
+        else:
+            print('Sabor inválido. Tente novamente.') # Senão, começa de novo
+
+    # Verificar se o tamanho é válido
+    # Exigência 3/8
+    while True:
+        tamanho = input('Digite o tamanho desejado (P/M/G): ').upper()
+        if tamanho in ['P', 'M', 'G']:
+            break # Se for válido, sai do loop
+        else:
+            print('Tamanho inválido. Tente novamente.') # Senão, começa de novo
+
+    # Acumulador e total
+    # Exigência 3/8
+    if sabor == 'BA':
+        nome = 'Bife acebolado'
+        if tamanho == 'P':
+            preco = 16
+        elif tamanho == 'M':
+            preco = 18
+        elif tamanho == 'G':
+            preco = 22
+    elif sabor == 'FF':
+        nome = 'Filé de Frango'
+        if tamanho == 'P':
+            preco = 15
+        elif tamanho == 'M':
+            preco = 17
+        elif tamanho == 'G':
+            preco = 21
+
+    print(f'Você pediu um {nome} no tamanho {tamanho}: R$ {preco}')
+    total += preco
+
+    # Perguntar se quer continuar
+    # Exigência 5/8
+    continuar = input('Deseja pedir mais alguma coisa? (S/N): ').upper()
+
+    # Exigência 6/8
+    if continuar == 'N':
+        print(f'Total a pagar: R$ {total}')
+        print('Obrigada pelo pedido!')
+        break  # Sai do loop e encerra
+    elif continuar == 'S':
+        continue  # Continua o loop para novo pedido
+    else:
+        print('Resposta inválida. Tente novamente')
+        print(f'Total a pagar: R$ {total}')
+        break
