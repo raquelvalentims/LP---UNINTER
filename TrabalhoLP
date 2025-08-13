@@ -1,0 +1,29 @@
+# Calcular o valor total do pedido baseando-se na quantidade de parcelas escolhidas
+
+
+# Boas vindas - 1/6
+print ('Seja bem-vindo(a) a loja da Raquel Valentim')
+
+# Coletando os dados - 2/6
+valor_pedido = float(input('Digite o valor do pedido: R$ '))
+qntd_parcelas = float(input('Digite a quantidade de parcelas: '))
+
+# Implementação dos juros conforme o enunciado 3/6
+if qntd_parcelas < 4: # Condicionando o valor da variável Juros com estruturas If, Elif e Else 5/6
+  juros = 0
+elif qntd_parcelas >= 4 and qntd_parcelas < 6:
+  juros = 4 / 100
+elif qntd_parcelas >= 6 and qntd_parcelas < 9:
+  juros = 8 / 100
+elif qntd_parcelas >= 9 and qntd_parcelas < 13:
+  juros = 16 / 100
+else:
+  juros = 32 / 100
+
+# Calcular o valor da parcela e o valor total do pedido 4/6
+valor_parcela = (valor_pedido)*(1+juros) / qntd_parcelas
+valor_total_parcelado = valor_parcela * qntd_parcelas
+
+# Retornar ao usuário os valores conforme a quantidade de parcelas escolhida 6/6
+print(f'O valor da parcela é de: R$ {valor_parcela}')
+print(f'O valor total parcelado é de: R$ {valor_total_parcelado}')
