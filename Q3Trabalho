@@ -1,0 +1,102 @@
+# Operar vendas de camisetas no atacado
+# Desconto condicional
+
+def escolhaModelo(): # Escolher o modelo
+# 2/7
+  while True:
+    mensagem = (
+      'Entre com o modelo desejado:\n'
+      'MCS - Camiseta Manga Curta Simples\n'
+      'MLS - Camiseta Manga Longa Simples\n'
+      'MCE - Camiseta Manga Curta com Estampa\n'
+      'MLE - Camiseta Manga Longa com Estampa\n'
+    )
+
+    modelo = input(mensagem).upper()
+
+    # Validação das opções
+    # Retorna o valor unitário
+    if (modelo == 'MCS'):
+        return 1.80
+    elif (modelo == 'MLS'):
+        return 2.10
+    elif (modelo == 'MCE'):
+        return 2.90
+    elif (modelo == 'MLE'):
+        return 3.20
+    else:
+        print("Escolha inválida. Entre com o modelo novamente.")
+
+
+def numCamisetas (): # Escolher a quantidade
+# 3/7
+  while True:
+    mensagem = 'Entre com o número de camisetas desejado: '
+
+    try: #6/7
+      qnt = int(input(mensagem))
+
+      # Calcula o desconto baseado na quantidade
+      # Valida a quantidade < 20000
+      # Retorna a quantidade e o valor do desconto
+      if (qnt > 20000):
+        print ('Não aceitamos tantas camisetas de uma vez.\n')
+        print ('Por favor, entre com o número de camisetas novamente.\n')
+        continue # Volta para o início do while
+
+      elif (qnt < 20):
+        desconto = 0
+      elif (qnt < 200):
+        desconto = 5/100
+      elif (qnt < 2000):
+        desconto = 7/100
+      else:
+        desconto = 12/100
+      return qnt, desconto # Só chega aqui se for válida
+
+    # Trata valores não inteiros e não numéricos
+    except ValueError: #6/7
+      print('Valor inválido. Entre com o número de camisetas novamente.')
+
+def calcularFrete (): # Calcular o valor do frete
+# 4/7
+  while True:
+    mensagem = (
+      'Escolha o tipo de frete:\n'
+      '0 - Retirar na fábrica (R$ 0,00)\n'
+      '1 - Transportadora (R$ 100,00)\n'
+      '2 - Sedex (R$ 200,00)\n'
+    )
+
+    opcao = input(mensagem)
+
+    # Valida as opções
+    if (opcao == '0'):
+        return 0
+    elif (opcao == '1'):
+        return 100
+    elif (opcao == '2'):
+        return 200
+    else:
+        print('Opção inválida! Escolha 0, 1 ou 2.')
+
+# Programa principal
+print ('Bem-vindo(a) à Fábrica de Camisetas da Raquel Valentim') # 1/7
+
+# Chama as funções
+try: # 6/7
+  modelo = escolhaModelo()
+  qnt, desconto = numCamisetas ()
+  frete = calcularFrete()
+
+  # Calcular o total armazenado nas funções
+  sub_total = modelo * qnt
+  total = (modelo * qnt) - (modelo * qnt * desconto) + frete # 5/7
+
+  # Retorna ao usuário o valor e as escolhas feitas
+  print(f'Total: R$ {total}. Modelo escolhido: {modelo}, * Quantidade: {qnt}, - Desconto {desconto} + Frete: {frete}')
+
+# Trata erros não previstos
+except Exception as erro: # 6/7
+    print('Ocorreu um erro inesperado.')
+    print(f'Erro: {erro}')
